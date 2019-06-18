@@ -62,6 +62,8 @@ def init_seafile_server():
     proto = 'https' if is_https() else 'http'
     with open(join(topdir, 'conf', 'seahub_settings.py'), 'a+') as fp:
         fp.write('\n')
+        fp.write("TIME_ZONE = '{time_zone}'".format(time_zone=os.getenv('TIME_ZONE',default='Etc/UTC')))
+        fp.write('\n')
         fp.write('FILE_SERVER_ROOT = "{proto}://{domain}/seafhttp"'.format(proto=proto, domain=domain))
         fp.write('\n')
 
