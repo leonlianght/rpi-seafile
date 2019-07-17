@@ -1,4 +1,4 @@
-FROM arm32v7/debian:9-slim
+FROM debian:10-slim
 
 ARG VERSION
 ENV SEAFILE_VERSION=${VERSION} SEAFILE_SERVER=seafile-server
@@ -11,7 +11,7 @@ COPY scripts /scripts
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y --no-install-recommends python2.7 python-imaging python-pip python-wheel python-setuptools curl sqlite3 procps rsync && \
+    apt install -y --no-install-recommends python2.7 python-pil python-pip python-wheel python-setuptools curl sqlite3 procps rsync && \
     pip install -r /tmp/requirements.txt && \
     rm -rf \
     /root/.cache \
@@ -41,7 +41,7 @@ RUN apt update && \
 
 USER seafile
 
-CMD ["python", "/scripts/start.py"]
+CMD ["python2", "/scripts/start.py"]
 
 LABEL org.label-schema.name="Seafile server" \
       org.label-schema.version=${VERSION} \
