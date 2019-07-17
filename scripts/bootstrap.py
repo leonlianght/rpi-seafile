@@ -93,6 +93,9 @@ def init_seafile_server():
 
     call('rsync -axk --delete --exclude "CACHE" ' + join(topdir, 'seafile-server-' + seafile_version, 'seahub', 'media') + ' ' + nginx)
     call('rsync -ax --delete ' + join(topdir, 'seahub-data', 'avatars') + ' ' + join(nginx, 'media'))
+    if not exists(join(topdir, 'seahub-data', 'custom')):
+        call('mkdir -p ' + join(topdir, 'seahub-data', 'custom'))
+
     call('rsync -ax --delete ' + join(topdir, 'seahub-data', 'custom') + ' ' + join(nginx, 'media'))
 
     if not exists(join(nginx, 'media', 'CACHE')):

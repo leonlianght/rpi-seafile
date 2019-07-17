@@ -11,7 +11,7 @@ COPY scripts /scripts
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y --no-install-recommends python2.7 python-pil python-pip python-wheel python-setuptools curl sqlite3 procps rsync && \
+    apt install -y --no-install-recommends python2.7 python-pil python-idna python-certifi python-pip python-wheel python-setuptools curl sqlite3 procps rsync && \
     pip install -r /tmp/requirements.txt && \
     rm -rf \
     /root/.cache \
